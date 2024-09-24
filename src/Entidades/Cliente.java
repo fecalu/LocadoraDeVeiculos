@@ -1,6 +1,10 @@
 package Entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import servicos.AluguelDoCliente;
 
 public class Cliente {
 	
@@ -8,8 +12,9 @@ public class Cliente {
 	private LocalDate dataDoCadastro;
 	private String telefone;
 	private String email;
-
 	private Pessoa pessoa;
+	
+	private List<AluguelDoCliente> alugueis = new ArrayList<>();
 	
 	
 	public Cliente() {
@@ -55,4 +60,11 @@ public class Cliente {
 	
 	
 	
+	public void addAluguei(AluguelDoCliente aluguel) {
+		this.alugueis.add(aluguel);
+	}
+	
+	public void removeAluguei(AluguelDoCliente aluguel) {
+		this.alugueis.remove(aluguel);
+	}
 }

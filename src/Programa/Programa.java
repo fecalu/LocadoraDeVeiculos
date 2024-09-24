@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import Entidades.Cliente;
+import Entidades.Locadora;
 import Entidades.Pessoa;
 import Entidades.Pf;
 import Entidades.Pj;
@@ -62,11 +63,27 @@ public class Programa {
 		}
 		 
 		 
-		 System.out.println("Cliente " + cliente.getPessoa().getNome() + "cadastrado com sucesso!");
+		 System.out.println("Cliente " + cliente.getPessoa().getNome() + " cadastrado com sucesso!");
 		 
 		 
+		 System.out.println();
+		 System.out.println("Carro a alugar: ");
+		 String carroAlugado = sc.nextLine();
+		 System.out.println("Retirada (dd/MM/yyyy): ");
+		 String inicio = sc.nextLine();
+		 LocalDate dataInicio = LocalDate.parse(inicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		 System.out.println("Retorno (dd/MM/yyyy): ");
+		 String fim = sc.nextLine();
+		 LocalDate dataFinal = LocalDate.parse(fim, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		 
+		 System.out.println("Preço por dia: ");
+		 double precoDia = sc.nextDouble();
+		 System.out.println("Preço por hora: ");
+		 double precoHora = sc.nextDouble();
 		 
 		 
+		 Locadora locadora = new Locadora();
+		 locadora.addCliente(cliente);
 		 
 		 
 		 
