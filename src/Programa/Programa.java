@@ -73,8 +73,8 @@ public class Programa {
 		 
 		 
 		 System.out.println();
-		 System.out.println("Proximos passos...");
-		 
+		 System.out.println("--------Entre com as datas do alguel--------");
+		 System.out.println();
 		 System.out.println("Data de retirada (dd/MM/yyyy) hh:mm: ");
 		 String inicio = sc.nextLine();
 		 LocalDateTime dataInicio = LocalDateTime.parse(inicio, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
@@ -92,13 +92,15 @@ public class Programa {
 		 locadora.addCliente(cliente);
 		 
 		 System.out.println();
-		 System.out.println("---------Carro a alugar---------");
+		 System.out.println("---------Entre com os dados do carro que o cliente irá alugar---------");
+		 System.out.println();
 		 System.out.println("Categoria do veículo:");
 		 String carroAlugado = sc.nextLine();
 		 System.out.println("Placa: ");
 		 String placaCarro = sc.nextLine();
 		 System.out.println("Marca: ");
 		 String marcaCarro = sc.nextLine();
+		 System.out.println("ano: ");
 		 int anoCarro = sc.nextInt();
 		 
 		 AluguelDoCliente aluguelCliente = new AluguelDoCliente(dataInicio, dataFinal, new Veiculo(CategoriaVeiculos.valueOf(carroAlugado),

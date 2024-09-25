@@ -40,6 +40,6 @@ public class Fatura {
 
 
 	public double pagamentoTotal() {
-		return this.pagamentoBasico * this.taxa;
+		return this.pagamentoBasico + this.taxa;
 	}
 }

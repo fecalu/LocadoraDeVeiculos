@@ -1,5 +1,7 @@
 package servicoTaxa;
 
+import java.time.Duration;
+
 import servicosFatura.AluguelDoCliente;
 import servicosFatura.Fatura;
 
@@ -70,8 +72,20 @@ public class servicoDeAluguel {
 
 	public void processoDeFatura(AluguelDoCliente aluguelCliente) {
 		
+		double minutos = Duration.between(aluguelCliente.getDataInicial(), aluguelCliente.getDatafFinal()).toMinutes();
+		double horas = minutos / 60.0;
 		
-		aluguelCliente.setFaturaCliente(new Fatura(50.0, 10));
+		double pagamentoBasico;
+		if (horas <= 12) {
+			pagamentoBasico = valorPorHora * Math.ceil(horas);
+		}
+		else {
+			pagamentoBasico = valorPorDia * Math.ceil(horas/24);
+		}
+		
+		double taxa = taxaServico.taxaServicoLocaliza(pagamentoBasico);
+		
+		aluguelCliente.setFaturaCliente(new Fatura(pagamentoBasico, taxa));
 		
 	}
 	
