@@ -1,6 +1,7 @@
 package Programa;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
@@ -10,6 +11,11 @@ import Entidades.Locadora;
 import Entidades.Pessoa;
 import Entidades.Pf;
 import Entidades.Pj;
+import entities.enums.CategoriaVeiculos;
+import servicoTaxa.TaxaDeServicoLocaliza;
+import servicoTaxa.servicoDeAluguel;
+import servicosFatura.AluguelDoCliente;
+import servicosFatura.Veiculo;
 
 public class Programa {
 
@@ -19,7 +25,7 @@ public class Programa {
 		 
 		 System.out.println("CNPJ ou CPF");
 		 String escolha = sc.nextLine();
-		 
+
 		 Pessoa pessoa = null;
 		 LocalDate dataCadastro = null;
 		 Cliente cliente = null;
@@ -67,25 +73,50 @@ public class Programa {
 		 
 		 
 		 System.out.println();
-		 System.out.println("Carro a alugar: ");
-		 String carroAlugado = sc.nextLine();
-		 System.out.println("Retirada (dd/MM/yyyy): ");
+		 System.out.println("Proximos passos...");
+		 
+		 System.out.println("Data de retirada (dd/MM/yyyy) hh:mm: ");
 		 String inicio = sc.nextLine();
-		 LocalDate dataInicio = LocalDate.parse(inicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		 System.out.println("Retorno (dd/MM/yyyy): ");
+		 LocalDateTime dataInicio = LocalDateTime.parse(inicio, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		 System.out.println("Data de retorno (dd/MM/yyyy) hh:mm: ");
 		 String fim = sc.nextLine();
-		 LocalDate dataFinal = LocalDate.parse(fim, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		 LocalDateTime dataFinal = LocalDateTime.parse(fim, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 		 
 		 System.out.println("Preço por dia: ");
 		 double precoDia = sc.nextDouble();
 		 System.out.println("Preço por hora: ");
 		 double precoHora = sc.nextDouble();
-		 
+		 sc.nextLine();
 		 
 		 Locadora locadora = new Locadora();
 		 locadora.addCliente(cliente);
 		 
+		 System.out.println();
+		 System.out.println("---------Carro a alugar---------");
+		 System.out.println("Categoria do veículo:");
+		 String carroAlugado = sc.nextLine();
+		 System.out.println("Placa: ");
+		 String placaCarro = sc.nextLine();
+		 System.out.println("Marca: ");
+		 String marcaCarro = sc.nextLine();
+		 int anoCarro = sc.nextInt();
 		 
+		 AluguelDoCliente aluguelCliente = new AluguelDoCliente(dataInicio, dataFinal, new Veiculo(CategoriaVeiculos.valueOf(carroAlugado),
+				 placaCarro, marcaCarro, anoCarro) );
+		 
+		 // Vamos chamar o serviço de aluguel
+		 
+		 servicoDeAluguel servicoAluguel = new servicoDeAluguel(precoHora, precoDia, new TaxaDeServicoLocaliza());
+		 
+		servicoAluguel.processoDeFatura(aluguelCliente);
+		
+		System.out.println("FATURA: ");
+		System.out.println("Pagamento basico: " + aluguelCliente.getFaturaCliente().getPagamentoBasico());
+		System.out.println("Imposto: " + aluguelCliente.getFaturaCliente().getTaxa());
+		System.out.println("Pagamento Total: " + aluguelCliente.getFaturaCliente().pagamentoTotal());
+		
+		
+		
 		 
 		 sc.close();
 

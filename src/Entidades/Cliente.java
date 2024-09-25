@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import servicos.AluguelDoCliente;
+import servicosFatura.AluguelDoCliente;
 
 public class Cliente {
 	
@@ -27,9 +27,7 @@ public class Cliente {
 		this.email = email;
 		this.pessoa = pessoa;
 	}
-
-
-
+	
 
 	public LocalDate getDataDoCadastro() {
 		return dataDoCadastro;
