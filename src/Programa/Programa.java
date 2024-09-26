@@ -112,6 +112,7 @@ public class Programa {
 		 
 		servicoAluguel.processoDeFatura(aluguelCliente);
 		
+		System.out.println();
 		System.out.println("FATURA: ");
 		System.out.println("Pagamento basico: " + aluguelCliente.getFaturaCliente().getPagamentoBasico());
 		System.out.println("Imposto: " + aluguelCliente.getFaturaCliente().getTaxa());

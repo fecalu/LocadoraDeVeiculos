@@ -9,13 +9,13 @@ public class servicoDeAluguel {
 	private double valorPorHora;
 	private double valorPorDia;
 	
-	private TaxaDeServicoLocaliza taxaServico;
+	private TaxaDeServico taxaServico;
 	
 	
 
 
 
-	public servicoDeAluguel(double valorPorHora, double valorPorDia, TaxaDeServicoLocaliza taxaServico) {
+	public servicoDeAluguel(double valorPorHora, double valorPorDia, TaxaDeServico taxaServico) {
 		this.valorPorHora = valorPorHora;
 		this.valorPorDia = valorPorDia;
 		this.taxaServico = taxaServico;
@@ -54,7 +54,7 @@ public class servicoDeAluguel {
 
 
 
-	public TaxaDeServicoLocaliza getTaxaServico() {
+	public TaxaDeServico getTaxaServico() {
 		return taxaServico;
 	}
 
@@ -83,7 +83,7 @@ public class servicoDeAluguel {
 			pagamentoBasico = valorPorDia * Math.ceil(horas/24);
 		}
 		
-		double taxa = taxaServico.taxaServicoLocaliza(pagamentoBasico);
+		double taxa = taxaServico.taxa(pagamentoBasico);
 		
 		aluguelCliente.setFaturaCliente(new Fatura(pagamentoBasico, taxa));
 		

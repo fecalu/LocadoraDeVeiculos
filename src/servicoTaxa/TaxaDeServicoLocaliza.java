@@ -1,8 +1,8 @@
 package servicoTaxa;
 
-public class TaxaDeServicoLocaliza {
+public class TaxaDeServicoLocaliza implements TaxaDeServico {
 	
-	public double taxaServicoLocaliza(double quantidade) {
+	public double taxa(double quantidade) {
 		if (quantidade <= 100) {
 			return quantidade * 0.2;
 		}
@@ -11,6 +11,8 @@ public class TaxaDeServicoLocaliza {
 		}
 			
 	}
+
+
 	
 	
 	
